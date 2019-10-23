@@ -12,15 +12,16 @@ public class LoadingSlider : MonoBehaviour
 
     private SceneMgr m_gameMgr;
     private Slider m_slider;
-    
+
     // Use this for initialization
     protected void Start () {
 
         //TODO 1: registrar el evento ProgressLoading en el AsyncLoader
-
+        asyncLoader.RegisterProgressCallback(ProgressLoading);
 
         m_slider = GetComponent<Slider>();
         m_slider.value = 0f;
+
     }
 
     // Update is called once per frame
@@ -33,12 +34,13 @@ public class LoadingSlider : MonoBehaviour
     {
         m_slider.value = progress;
         //TODO 2: deregistrar el evento cuando termina la carga (finish)
-
+        asyncLoader.UnregisterProgressCallback(ProgressLoading);
     }
 
     protected void OnDestroy()
     {
         //TODO 3: deregistrar el evento cuando se destruye el objeto. Comprobar que asyncLoader sea distinto de null por sanidad :)
-
+        if(asyncLoader)
+            asyncLoader.UnregisterProgressCallback(ProgressLoading);
     }
 }

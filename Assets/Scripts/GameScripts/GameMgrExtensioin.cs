@@ -12,7 +12,11 @@ public static class GameMgrExtension
         //TODO 1:: metodo de estensión (notese el this) que nos permite añadir el CustomMgr que hemos creado, para ello primero preguntamos si el 
         //CustomMgr ha sido inicializado ya ha sido configurado, si esto es así devolvemos el customMgr del GameMgr, si no es así lo configuramos.
         // eliinar el return null.
-
+        if (!gameMgr.IsCustomMgrInit())
+        {
+            CustomMgrs customMgrs = new CustomMgrs(gameMgr);
+            gameMgr.CustomMgr = customMgrs;
+        }
         return (CustomMgrs)gameMgr.CustomMgr;
 
     }

@@ -39,7 +39,7 @@ public class SubSceneLoader : MonoBehaviour
             {
                 Debug.Log("Loading");
                 //TODO 1: Cargar la subescena que toque.
-                
+                sceneMgr.LoadSubScene(subScene);
             }
             else
             {

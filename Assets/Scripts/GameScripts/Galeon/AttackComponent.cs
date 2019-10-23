@@ -152,7 +152,7 @@ public class AttackComponent : MonoBehaviour
 				//No puedo volver a aceptar otro mensaje de ataque porque aun estoy bloqueado, pero ya no ataco (no es ataque automatico)
 				m_attackBlocked = true;
 
-                GameMgr.GetInstance().GetServer<TimeMgr>().SetAlarm(this, "WeaponTimeWaiting", OnWaeponTimeFinish, null, m_weapons[m_activeWeapon].TimeBetweenAttacks, false);
+                GameMgr.GetInstance().GetServer<TimeMgr>().SetAlarm(this, "WeaponTimeRegisterChangeWeaponWaiting", OnWaeponTimeFinish, null, m_weapons[m_activeWeapon].TimeBetweenAttacks, false);
 
             }
         }
@@ -175,7 +175,7 @@ public class AttackComponent : MonoBehaviour
         SendMessage("OnChangeWeapon", m_activeWeapon,SendMessageOptions.DontRequireReceiver);
 
         // TODO 1 : Registramos RegisterChangeWeapon en el input controller del inputmgr con el event ChangeWeapon
-
+        GameMgr.GetInstance().GetServer<InputMgr>().GetInput<PointAndClickInput>().RegisterChangeWeapon(ChangeWeapon);
 
 
         foreach (TWeapons wp in m_weapons)

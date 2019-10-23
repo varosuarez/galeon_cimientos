@@ -139,9 +139,9 @@ public class GameMgr
 
             //SceneMgr: Gestiona la carga de escenas... 
             //TODO (SceneMgr)  
-            //AddServer<SceneMgr>();
-            //SceneMgr smAux = m_servers.GetComponent<SceneMgr>();
-            //m_spawnerMgr = new SpawnerMgr(smAux);
+            AddServer<SceneMgr>();
+            SceneMgr smAux = m_servers.GetComponent<SceneMgr>();
+            m_spawnerMgr = new SpawnerMgr(smAux);
 
 
             //TODO (InputMgr)
@@ -225,7 +225,7 @@ public class GameMgr
 	protected void ProcessBaseConfiguration()
 	{
         GameMgrConfig gameMgrConfig = ScriptableObjectMgr.Load<GameMgrConfig>(CONFIGURATION_FOLDER+"/"+CONFIGURATION_FILE);
-
+        Debug.Log(CONFIGURATION_FOLDER + "/" + CONFIGURATION_FILE);
         m_storageFileName = gameMgrConfig.m_storageMgrConfig.StorageFileName;
 		
         m_IM_buttonId = gameMgrConfig.m_inputMgrConfig.ButtonIdToPointAndClick;
