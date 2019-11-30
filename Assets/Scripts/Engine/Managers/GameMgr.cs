@@ -88,14 +88,14 @@ public class GameMgr
 
     //Implementacion del storageMng que nos permite declarar los tipos de datos que permitimos almacenar en nuestros objetos.
     //TODO AllowedType
-    /*[AllowedTypeToStorage(typeof(bool))]
+    [AllowedTypeToStorage(typeof(bool))]
     [AllowedTypeToStorage(typeof(int))]
     [AllowedTypeToStorage(typeof(string))]
     [AllowedTypeToStorage(typeof(float))]
     [AllowedTypeToStorage(typeof(Vector2))]
     [AllowedTypeToStorage(typeof(Vector3))]
     [AllowedTypeToStorage(typeof(Vector4))]
-    [AllowedTypeToStorage(typeof(Quaternion))]*/
+    [AllowedTypeToStorage(typeof(Quaternion))]
 	private class StorageMgrImp : StorageMgr
 	{
         public StorageMgrImp(string fileName) : base(fileName, GameMgr.Deserializer) { }
@@ -107,7 +107,6 @@ public class GameMgr
 	/// <returns>
 	/// The instance.
 	/// </returns>
-    
 	public static GameMgr GetInstance()
 	{
 		if(m_instance == null)
@@ -225,7 +224,7 @@ public class GameMgr
 	protected void ProcessBaseConfiguration()
 	{
         GameMgrConfig gameMgrConfig = ScriptableObjectMgr.Load<GameMgrConfig>(CONFIGURATION_FOLDER+"/"+CONFIGURATION_FILE);
-        Debug.Log(CONFIGURATION_FOLDER + "/" + CONFIGURATION_FILE);
+        //Debug.Log(CONFIGURATION_FOLDER + "/" + CONFIGURATION_FILE);
         m_storageFileName = gameMgrConfig.m_storageMgrConfig.StorageFileName;
 		
         m_IM_buttonId = gameMgrConfig.m_inputMgrConfig.ButtonIdToPointAndClick;

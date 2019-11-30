@@ -14,6 +14,16 @@ public class SceneMgr : MonoBehaviour
         public List<string> subScenes;
     }
 
+    public string CurrentSceneName
+    {
+        get { return m_stackScenes.Peek().name; }
+    }
+
+    public Scene GetCurrentScene
+    {
+        get { return SceneManager.GetSceneByName(CurrentSceneName); }
+    }
+
     /// <summary>
     /// Pila de escenas
     /// </summary>

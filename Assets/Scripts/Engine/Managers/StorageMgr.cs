@@ -74,7 +74,6 @@ public abstract class StorageMgr
 
     public T Get<T>(string section, string key)
 	{
-        // TODO 2: Almacenamos una Key en el diccionario m_serialized
         Debug.Assert(m_serialized.ContainsKey(section), "Section " + section + " not exist");
         StorageKey sk = m_serialized[section];
         Debug.Assert(sk.ContainsKey(key), "The Key " + key + " in section " + section + " not exist");
@@ -220,7 +219,7 @@ public abstract class StorageMgr
 	
 	/*public T GetUnserialized<T>(string section, string key)
 	{
-		
+	
 	}*/
 	
 	public bool ExistFile()

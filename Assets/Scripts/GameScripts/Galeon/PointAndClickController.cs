@@ -46,7 +46,7 @@ public class PointAndClickController : MonoBehaviour
         Debug.Assert(m_inputMgr != null, "Error, no se ha cargado el inputMgr");
         //TODO 1 registrarnos en RegisterPointAndClickEvent con (OnBeginClick, null, OnBeginClick);
         m_inputMgr.RegisterPointAndClickEvent(OnBeginClick, null, OnBeginClick);
-
+        
         m_speed = m_initialSpeed;
 		m_rightInstantAngle = m_angleToInstantRotate;
 		m_leftInstantAngle = 365 - m_angleToInstantRotate;
@@ -74,7 +74,8 @@ public class PointAndClickController : MonoBehaviour
 	
 	public void OnBeginClick(GameObject onCollision,Vector3 point, float distance)
 	{
-		if(Utils.IsInArray(onCollision.tag,m_enemiesTags))
+        //Debug.Log("Click");
+        if (Utils.IsInArray(onCollision.tag,m_enemiesTags))
 		{
 			if(m_state != TState.ATTACK_BLOCK)
 			{

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 /// <summary>
 /// Spawner mgr. Manager que gestiona la creacion de entidades dle juego dinamicas. Es altamente recomendable siempre utilizar el
 /// SpawnerMng y no crear objetos a mano directamente. De esta forma podemos gestionar de forma global la instanciacion dew entidades.
@@ -50,8 +51,9 @@ public class SpawnerMgr
             //Esto es asi para poder obtener luego el prefab original que los instancio.
             instance = Object.Instantiate(prefab, position, rotation) as GameObject;
             instance.name = prefab.name + "@" + m_staticIDs++;
-            //GameObject root = GameMgr.GetInstance().GetServer<SceneMgr>().GetCurrentSceneRoot();
-            //instance.transform.parent = root.transform;
+
+            Scene scene = GameMgr.GetInstance().GetServer<SceneMgr>().GetCurrentScene;
+            instance.transform.parent = scene.GetRootGameObjects()[0].transform;
         }
 		return instance;
 	}
@@ -117,8 +119,9 @@ public class SpawnerMgr
                 //registramos los nuevos prebuild objects...
                 newObject.SetActive(false);
                 list.Add(newObject);
-                //GameObject root = GameMgr.GetInstance().GetServer<SceneMgr>().GetCurrentSceneRoot();
-                //newObject.transform.parent = root.transform;
+                Scene scene = GameMgr.GetInstance().GetServer<SceneMgr>().GetCurrentScene;
+                newObject.transform.parent = scene.GetRootGameObjects()[0].transform;
+                
             }
             m_cache.Add(cd.prefab.name,list);
 		}
